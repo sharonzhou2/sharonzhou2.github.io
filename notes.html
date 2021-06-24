@@ -1,0 +1,821 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Javascript</title><style>
+    /* cspell:disable-file */
+    /* webkit printing magic: print all background colors */
+    html {
+        -webkit-print-color-adjust: exact;
+    }
+    * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    @media only screen {
+        body {
+            margin: 2em auto;
+            max-width: 900px;
+            color: rgb(55, 53, 47);
+        }
+    }
+    
+    body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+    }
+    
+    a,
+    a.visited {
+        color: inherit;
+        text-decoration: underline;
+    }
+    
+    .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+    }
+    
+    h1,
+    h2,
+    h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+    
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+    }
+    
+    h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+    }
+    
+    .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+    }
+    
+    .callout {
+        border-radius: 3px;
+        padding: 1rem;
+    }
+    
+    figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+    }
+    
+    figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+    }
+    
+    mark {
+        background-color: transparent;
+    }
+    
+    .indented {
+        padding-left: 1.5em;
+    }
+    
+    hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+    }
+    
+    img {
+        max-width: 100%;
+    }
+    
+    @media only print {
+        img {
+            max-height: 100vh;
+            object-fit: contain;
+        }
+    }
+    
+    @page {
+        margin: 1in;
+    }
+    
+    .collection-content {
+        font-size: 0.875rem;
+    }
+    
+    .column-list {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .column {
+        padding: 0 1em;
+    }
+    
+    .column:first-child {
+        padding-left: 0;
+    }
+    
+    .column:last-child {
+        padding-right: 0;
+    }
+    
+    .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+    }
+    
+    .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+    }
+    
+    .table_of_contents-indent-2 {
+        margin-left: 3rem;
+    }
+    
+    .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+    }
+    
+    .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+    }
+    
+    table {
+        border-left: none;
+        border-right: none;
+    }
+    
+    th,
+    td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+    }
+    
+    th {
+        color: rgba(55, 53, 47, 0.6);
+    }
+    
+    ol,
+    ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+    }
+    
+    li > ol:first-child,
+    li > ul:first-child {
+        margin-block-start: 0.6em;
+    }
+    
+    ul > li {
+        list-style: disc;
+    }
+    
+    ul.to-do-list {
+        text-indent: -1.7em;
+    }
+    
+    ul.to-do-list > li {
+        list-style: none;
+    }
+    
+    .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+    }
+    
+    ul.toggle > li {
+        list-style: none;
+    }
+    
+    ul {
+        padding-inline-start: 1.7em;
+    }
+    
+    ul > li {
+        padding-left: 0.1em;
+    }
+    
+    ol {
+        padding-inline-start: 1.6em;
+    }
+    
+    ol > li {
+        padding-left: 0.2em;
+    }
+    
+    .mono ol {
+        padding-inline-start: 2em;
+    }
+    
+    .mono ol > li {
+        text-indent: -0.4em;
+    }
+    
+    .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+    }
+    
+    /* Indent toggle children */
+    .toggle > li > details {
+        padding-left: 1.7em;
+    }
+    
+    .toggle > li > details > summary {
+        margin-left: -1.1em;
+    }
+    
+    .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+    }
+    
+    .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+    }
+    
+    time {
+        opacity: 0.5;
+    }
+    
+    .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+    }
+    
+    img.icon {
+        border-radius: 3px;
+    }
+    
+    .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+    }
+    
+    .user-icon-inner {
+        font-size: 0.8em;
+    }
+    
+    .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+    }
+    
+    .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        height: 30vh;
+    }
+    
+    .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+    }
+    
+    .page-header-icon img {
+        border-radius: 3px;
+    }
+    
+    .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+    }
+    
+    p > .user {
+        opacity: 0.5;
+    }
+    
+    td > .user,
+    td > time {
+        white-space: nowrap;
+    }
+    
+    input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+    }
+    
+    p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+    
+    .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+    }
+    
+    .code,
+    code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+    }
+    
+    code {
+        color: #eb5757;
+    }
+    
+    .code {
+        padding: 1.5em 1em;
+    }
+    
+    .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+    
+    .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+    }
+    
+    blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+    }
+    
+    .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+    }
+    
+    .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+    }
+    
+    .bookmark-text {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+    }
+    
+    .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+    }
+    
+    .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+    }
+    
+    .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+    .code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+    .serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+    .mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+    .pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+    
+    .pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+    
+    .pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+    
+    .pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+    
+    .highlight-default {
+    }
+    .highlight-gray {
+        color: rgb(155,154,151);
+    }
+    .highlight-brown {
+        color: rgb(100,71,58);
+    }
+    .highlight-orange {
+        color: rgb(217,115,13);
+    }
+    .highlight-yellow {
+        color: rgb(223,171,1);
+    }
+    .highlight-teal {
+        color: rgb(15,123,108);
+    }
+    .highlight-blue {
+        color: rgb(11,110,153);
+    }
+    .highlight-purple {
+        color: rgb(105,64,165);
+    }
+    .highlight-pink {
+        color: rgb(173,26,114);
+    }
+    .highlight-red {
+        color: rgb(224,62,62);
+    }
+    .highlight-gray_background {
+        background: rgb(235,236,237);
+    }
+    .highlight-brown_background {
+        background: rgb(233,229,227);
+    }
+    .highlight-orange_background {
+        background: rgb(250,235,221);
+    }
+    .highlight-yellow_background {
+        background: rgb(251,243,219);
+    }
+    .highlight-teal_background {
+        background: rgb(221,237,234);
+    }
+    .highlight-blue_background {
+        background: rgb(221,235,241);
+    }
+    .highlight-purple_background {
+        background: rgb(234,228,242);
+    }
+    .highlight-pink_background {
+        background: rgb(244,223,235);
+    }
+    .highlight-red_background {
+        background: rgb(251,228,228);
+    }
+    .block-color-default {
+        color: inherit;
+        fill: inherit;
+    }
+    .block-color-gray {
+        color: rgba(55, 53, 47, 0.6);
+        fill: rgba(55, 53, 47, 0.6);
+    }
+    .block-color-brown {
+        color: rgb(100,71,58);
+        fill: rgb(100,71,58);
+    }
+    .block-color-orange {
+        color: rgb(217,115,13);
+        fill: rgb(217,115,13);
+    }
+    .block-color-yellow {
+        color: rgb(223,171,1);
+        fill: rgb(223,171,1);
+    }
+    .block-color-teal {
+        color: rgb(15,123,108);
+        fill: rgb(15,123,108);
+    }
+    .block-color-blue {
+        color: rgb(11,110,153);
+        fill: rgb(11,110,153);
+    }
+    .block-color-purple {
+        color: rgb(105,64,165);
+        fill: rgb(105,64,165);
+    }
+    .block-color-pink {
+        color: rgb(173,26,114);
+        fill: rgb(173,26,114);
+    }
+    .block-color-red {
+        color: rgb(224,62,62);
+        fill: rgb(224,62,62);
+    }
+    .block-color-gray_background {
+        background: rgb(235,236,237);
+    }
+    .block-color-brown_background {
+        background: rgb(233,229,227);
+    }
+    .block-color-orange_background {
+        background: rgb(250,235,221);
+    }
+    .block-color-yellow_background {
+        background: rgb(251,243,219);
+    }
+    .block-color-teal_background {
+        background: rgb(221,237,234);
+    }
+    .block-color-blue_background {
+        background: rgb(221,235,241);
+    }
+    .block-color-purple_background {
+        background: rgb(234,228,242);
+    }
+    .block-color-pink_background {
+        background: rgb(244,223,235);
+    }
+    .block-color-red_background {
+        background: rgb(251,228,228);
+    }
+    .select-value-color-default { background-color: rgba(206,205,202,0.5); }
+    .select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+    .select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+    .select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+    .select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+    .select-value-color-green { background-color: rgba(0,135,107,0.2); }
+    .select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+    .select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+    .select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+    .select-value-color-red { background-color: rgba(255,0,26,0.2); }
+    
+    .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+    }
+    
+    .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+    }
+    
+    .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+    }
+        
+    </style></head><body> <article id="9b74e8be-7c85-4d70-a850-c88764d3e596" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/nasa_fingerprints_of_water_on_the_sand.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">⛷️</span></div><h1 class="page-title">Javascript</h1></header><div class="page-body"><p id="beb7d65b-bef8-4fcb-81a2-4192c8dbfab3" class=""><strong>This Statement</strong></p><ul id="e0ae8aed-028f-4229-9e03-5d582fdbebfd" class="bulleted-list"><li>How we declare functions in different ways affect the environment in which we try to access the this object</li></ul><ul id="ca12b549-8bf2-42b8-8856-c8edf56b2eee" class="bulleted-list"><li>Remember: The value of &quot;this&quot; is evaluated during runtime and it depends on the context. </li></ul><pre id="11a46c4f-0185-4d77-95c0-a7944b690cea" class="code"><code>const obj = (a) =&gt; {
+        this.a = a; // This refers to the window environment and not the object
+    }
+    
+    const obj2 = function(a) {
+        this.a = a; // This will print out the environment properly
+    }
+    </code></pre><p id="f1e82abb-7903-45d9-ac47-431ed083b797" class="">Another example:</p><pre id="fa569d54-76f4-422d-9b02-ba34f65c8927" class="code"><code>const obj = {
+        x: 1,
+        getX() {
+            const inner = () =&gt; {
+                console.log(this.x);
+            }
+            inner();
+        }
+    }
+    obj.getX(); //this.x is referring to the x in the window object =  1
+    
+    //Eg.2
+    const obj = {
+        x: 1,
+        getX() {
+            const inner = function() {
+                console.log(this.x);
+            }
+            inner();
+        }
+    }
+    obj.getX(); //this.x refers to the x within the scope so as we havent passed in 
+    // any values through, this will be underfined</code></pre><p id="eb06f754-05b5-45b8-9e4f-f648abcd766a" class="">
+    </p><p id="894a3501-e00c-4dc9-88af-50adfb67ea18" class=""><strong>Cloning Objects</strong></p><ul id="2676a7dc-d3e7-40e0-935b-e3950eae5312" class="bulleted-list"><li>Spread Operator</li></ul><ul id="2aaea022-38a2-4d88-945d-bea3c69480f1" class="bulleted-list"><li>Object.assign()</li></ul><pre id="b57e2a08-0e9e-4fb0-9fe9-02689dc4eecd" class="code"><code>const food = {
+        beef: 1,
+        turkey: 2,
+    }
+    
+    //Clone using the spread operator
+    const cloneFood = {...food};
+    
+    //Clone using the Object.assign() method
+    const cloneByObject = Object.assign({}, food);
+    </code></pre><p id="6b947fc8-5473-409c-93dc-9adf2da97d1b" class="">These two operations will return us back &quot;shallow clone&quot;. So essentially if we were to have nested objects in each other, it will only retain the first value.  See the example below</p><p id="88125f88-2beb-4cb1-8bd3-af764bd7b066" class="">
+    </p><pre id="97dbc06d-2f94-474d-bcb5-c83ac5973072" class="code"><code>const nestedObj = {
+        flag: &#x27;black&#x27;,
+        countryCulture: {
+            food: &#x27;nooodles&#x27;,
+            clothes: &#x27;cool&#x27;
+        }
+    }
+    const country = {...nestedObj}
+    
+    console.log(country.flag); // black
+    console.log(country.countryCulture.food) // nooodles
+    
+    
+    //Changing the values in the object and also in the nested object
+    country.flag = &#x27;blue&#x27;;
+    country.countryCulture.food = &#x27;soup&#x27;;
+    
+    console.log(country.countryCulture);
+    console.log(nestedObj.countryCulture); // &lt;- Our nestedObj has also been changed</code></pre><p id="d4d174d3-d2e1-4567-b2f2-8deb0e8fa6a5" class="">When we use a shallow copy on the first level is copied whilst the deeper elements are referenced.</p><p id="d6169871-e9d1-4164-884f-dc0d9e5fcdba" class="">
+    </p><p id="499a0a80-86b7-4299-895b-ca9a4d721a8b" class="">Deep Copy</p><p id="ec568046-4fe0-4910-8d95-c6f36c4cdef0" class="">A quick and easy way of doing a deep copy is using JSON.stringify() which converts the object to a string and then JSON.parse() converting the string back to an object.</p><p id="0b67367b-ca44-4696-bc40-4c72971217f4" class="">
+    </p><pre id="1e8c85f7-4754-4c3d-b64e-d2203d1208d6" class="code"><code>const obj = {
+        a: {
+            b: {
+                c: 2
+            }
+        }
+    }
+    
+    // const objClone = {...obj};
+    const objClone = JSON.parse(JSON.stringify(obj));
+    objClone.c = 1;
+    console.log(objClone);
+    console.log(obj);</code></pre><p id="3d704bf0-352c-4398-a52d-5ae0be4c1451" class="">Otherwise, we will need to call it recursively so we are able to grab all the values that are sitting inside the nested loops.</p><p id="b94612ca-5c3e-496d-88e1-e3ded3bbe853" class="">
+    </p><p id="e8f09766-dcce-4d7e-a75d-ecde5795e9cb" class="">References: </p><p id="ef87d7f5-6719-435c-a008-9d41551b3784" class=""><a href="https://www.samanthaming.com/tidbits/70-3-ways-to-clone-objects/">https://www.samanthaming.com/tidbits/70-3-ways-to-clone-objects/</a></p><p id="4c8bb391-7801-46d0-8d12-a5a0ca93d699" class="">
+    </p><p id="70796383-3517-44a9-ac28-f6584c938335" class=""><strong>Joining Arrays</strong></p><ul id="e5982f71-8fc8-4a02-a437-42f6ae53bc28" class="bulleted-list"><li>.concat()</li></ul><ul id="b4389934-6d98-4348-a9e3-768e0d112d42" class="bulleted-list"><li>+ operator</li></ul><pre id="5c2eae02-8699-4759-9677-f2aaa1d71415" class="code"><code>let a = [1,2,4];
+    let b = [2,6,7]
+    
+    let c = a.concat(b); // [1,2,4,2,6,7]
+    
+    //or similarly we can use the + operator to join an array on either side
+    
+    let d = b + a; // [2,6,7,1,2,4]</code></pre><p id="accc0f1e-b528-4453-a48d-060902a32fa2" class=""><strong>Sorting Arrays</strong></p><p id="e6171f80-5795-4df9-ae58-10d76cb9ee72" class="">The array.sort() method sorts the array in-place and it does it by converting the elements to a string and then comparing their sequences. See the MDN example below</p><pre id="cc04a40b-4978-43f8-99da-a755d3282abc" class="code"><code>const months = [&#x27;March&#x27;, &#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Dec&#x27;];
+    months.sort();
+    console.log(months);
+    // expected output: Array [&quot;Dec&quot;, &quot;Feb&quot;, &quot;Jan&quot;, &quot;March&quot;]
+    
+    const array1 = [1, 30, 4, 21, 100000];
+    array1.sort();
+    console.log(array1);
+    // expected output: Array [1, 100000, 21, 30, 4]</code></pre><p id="b1de6508-735d-47f1-902c-83bb0cfd608c" class="">Notice how when we are trying to sort the numbers, it is not returning it to us numerical order, rather it is comparing each string a time and ordering it in that manner. Good explanation from MDN:</p><p id="a2bf2118-9f7b-4e51-b7c6-9d84ea54e123" class="">
+    </p><blockquote id="bfbdcb3a-5c42-4fa2-8a03-01cc702955f5" class="">...all non-undefined array elements are sorted by converting them to strings and comparing strings in UTF-16 code units order. For example, &quot;banana&quot; comes before &quot;cherry&quot;. In a numeric sort, 9 comes before 80, but because numbers are converted to strings, &quot;80&quot; comes before &quot;9&quot; in the Unicode order.</blockquote><p id="1ad3913a-def9-44ff-8b09-443556d726e6" class="">
+    </p><p id="7d6fe2f0-cd66-4e4e-94aa-241c830a45fb" class="">If we wanted to sort the numbers numerically, what we can do instead is pass in a compareFunction that sorts it by the value</p><pre id="43e8cc5a-b94c-490c-b9fa-3272ec2cbfc9" class="code"><code>const a = [1,2,5,7,9];
+    const b = [2,5,7,12,100];
+    console.log(a.concat(b).sort((a, b) =&gt; a - b));</code></pre><p id="36854fd2-d1bb-4f4b-a783-14a03eba6055" class="">References:</p><p id="14175e5f-8075-433d-b710-52197f09f3b8" class=""><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort</a></p><p id="e7e63f38-0cb7-4c15-b9f2-2772000963d2" class="">
+    </p><p id="5e361cb8-9894-4cfe-8e10-31df9ac05feb" class="">
+    </p><p id="ebe08706-9336-4b97-a838-f989345f9ea1" class=""><strong>Reduce</strong></p><p id="e31e8612-06c5-440f-a7e7-0e75e87d0c76" class="">For the .reduce() method, it takes in parameters, <strong>accumulator </strong>and the <strong>current value </strong>and it returns a single number at the end of the function by applying the rule that was passed in.</p><p id="4f8d082f-2e00-4fc4-85a6-fb5aaf0ae330" class="">
+    </p><p id="94157c05-1928-4811-9a5e-43f4172aabe6" class="">Note that it can take in additional values, but these are the main ones we are concerned with<div class="indented"><blockquote id="3d76214e-60ab-4121-bf60-b619e7a2fe9d" class="">The reducer function takes four arguments:
+    1.  Accumulator
+    2. Current Value
+    3. Current Index
+    4. Source Array</blockquote></div></p><pre id="7eb2de52-510b-4e90-a95c-9363cda545f4" class="code"><code>// Reduce
+    let array = [1,2,5,7];
+    const reducer = (accumulator, currValue) =&gt; accumulator + currValue; // Sums = 15
+    const getMax = (a,b) =&gt; Math.max(a,b); // Returns the largest number in the list
+    let a = array.reduce(getMax);
+    console.log(a);
+    
+    //If we wanted the intial value to be something
+    let b = array.reduce(reducer, 1); //The sum of the array = 15 + 1</code></pre><p id="073c95c3-e0b8-41fa-808c-45dd1bfef896" class="">Note that if we don&#x27;t declare the accumulator it will just take in the first value.</p><p id="cc3b2c47-f8a6-4f91-a038-a1aca7854a6e" class="">
+    </p><p id="b2c1df38-32fd-4f22-b9f8-67fbbb42baed" class="">References:</p><p id="2f1972e1-dd07-4bed-8d9e-7c080af378c8" class=""><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce</a></p><p id="bf5abb96-63b8-46e3-af3a-f8c22c6e9021" class="">
+    </p><p id="0e46ea88-1037-4192-8be4-05e7f34f4dbc" class=""><strong>Currying</strong></p><p id="39fece20-f38c-4b51-b8d8-bf0cb48bd898" class="">Ok. So I saw this question which was to add(2)(3) and also add(2,3). When I first saw this, it blew my mind how confusing all of this was. <strong> </strong></p><p id="66761f5b-07c4-4a49-8b06-e5d97e740557" class="">
+    </p><p id="049c4d67-8377-45ac-a09c-0f032b3747d2" class="">Then i discovered that this was a technique known as &quot;currying&quot;. <em>Okay...so just another crazy nuance using javascript. hahah </em>👿</p><p id="ce934bf5-6c31-4180-a1f6-1784c2e9b977" class="">
+    </p><blockquote id="539af332-424e-4ade-a1cd-0b34279564c5" class="">Currying is a technique of evaluating a function with multiple arguments, into sequence of function with single/multiple argument. In above problem, we simply turn up add(2,3) into add(2)(3).</blockquote><pre id="9a697b7e-0e85-498a-81e1-08e93dc4baf2" class="code"><code>//Currying
+    function add(x) {
+        return function(y) {
+            return x + y;
+        }
+    }
+    // Additionally using the ES6 notation
+    let add = (x) =&gt; (y) =&gt; x + y;
+    
+    // How can we add both of the functions together?
+    function add(x, y) {
+        if (!(y === undefined)) {
+            return x + y;
+        } else {
+            return function(y) {
+                return x + y;
+            }
+        }
+    }
+    
+    let a = add(2,3);
+    let b = add(2)(3);
+    console.log(a);
+    console.log(b);</code></pre><p id="6616f06b-02a4-4176-bfd3-75ccb9467500" class="">References:</p><p id="a97e4452-df52-4d08-8afd-ffd8238c1751" class=""><a href="https://theanubhav.com/2019/02/03/js-currying-in-interview/">https://theanubhav.com/2019/02/03/js-currying-in-interview/</a></p><p id="acada1ec-1c22-46aa-bace-e44935669c60" class="">
+    </p><p id="66912eb7-b8f5-4bfb-8b97-e1ed75f6dee6" class=""><strong>Maps vs Objects</strong></p><p id="2eab2b23-c8ef-4bc8-963c-06407114f6ef" class="">They are very different!!</p><ul id="775d79f7-7643-425e-af8b-7afbe96e1638" class="bulleted-list"><li>For maps, you can store any sort of values in the value of the key value pair</li></ul><ul id="8f870d83-a3ff-44e8-8a80-79356a35d857" class="bulleted-list"><li>Objects: You can ONLY store strings and symbols!</li></ul><p id="1c389166-b8dc-452e-9e9d-e04196e80876" class="">Let&#x27;s look at a very simple example...</p><pre id="9a2ad7a7-9c9e-432c-8af1-ec6f0de68eef" class="code"><code>let myMap = new Map();
+    myMap.set(1, &#x27;hello&#x27;);
+    myMap.set(2, &#x27;who&#x27;);
+    myMap.set(3, &#x27;am&#x27;);
+    myMap.set(4, &#x27;i&#x27;);
+    
+    console.log(myMap);</code></pre><p id="a2ba95c5-ba4d-435e-a59c-370a81001712" class="">The following is the result when we console.log() myMap</p><figure id="fee66acb-8ba1-493a-a18e-0be6ce129c6a" class="image"><a href="Javascript%20fee66acb8ba1493aa18e0be6ce129c6a/Untitled.png"><img style="width:1020px" src="Javascript%20fee66acb8ba1493aa18e0be6ce129c6a/Untitled.png"/></a></figure><ul id="2f5e7848-af57-455d-9b9f-60ab9160eb5a" class="bulleted-list"><li>Note that it shows ⇒ to ensure that we know that this is NOT  an object</li></ul><ul id="a5385d02-66fb-4c71-8baa-a85823cb0c12" class="bulleted-list"><li>We can loop using for..or which can be used for arrays<ul id="328b117d-9759-446f-86c1-5b8b724bfe4d" class="bulleted-list"><li>for..in is only used for <strong>objects</strong></li></ul><ul id="928114c3-60a9-4d9f-9f27-416f7b37ab0e" class="bulleted-list"><li></li></ul></li></ul><p id="8a697fec-2645-4d9e-924d-af9df354f239" class="">Map Looping</p><p id="1deb886e-3654-4d6c-a25b-65e2a4fecbeb" class="">To loop through keys and values, we do the following</p><pre id="77e00c7b-6e90-424d-85a8-640c01d87e35" class="code"><code>for (let key of myMap.keys()) {
+        console.log(key);
+    }
+    
+    
+    for (let value of myMap.values()) {
+        console.log(value);
+    }
+    
+    for (let [key, value] of myMap) {
+        console.log(`The key is ${key} and value is ${value}`);
+    }
+    
+    myMap.forEach((v,k) =&gt; console.log(`The key is ${k} and value is ${v}`))</code></pre><ul id="2bf6bda6-50a4-4c41-81db-91f2ec238bc4" class="bulleted-list"><li>myMap.keys()</li></ul><ul id="bb1cdfd5-89a7-4411-86ac-b5e58d79efc9" class="bulleted-list"><li>myMap.values()</li></ul><ul id="0d2e1761-4627-4018-bcef-212935bb346f" class="bulleted-list"><li>for [key, value] of myMap</li></ul><ul id="3e000361-e0c2-4358-a175-a8d73e1a8a48" class="bulleted-list"><li>myMap.forEach(value, key)<ul id="d088702b-9d92-4642-9043-bcf2dc8d1ed9" class="bulleted-list"><li>Note that by using the forEach loop we are usually expected to manipulate the value rather than the key, hence why this is the first parameter. </li></ul><p id="a0d43649-9cbc-4deb-b36b-1bba0f5a721c" class="">
+    </p></li></ul><p id="7da700fb-86bd-45a7-bfd9-e90c0da98af9" class=""><strong>Difference between target vs currentTarget</strong></p><ul id="6b0eed89-e82e-4459-882f-b946cd74dc7f" class="bulleted-list"><li>currentTarget is what you attached the event listener to </li></ul><ul id="119a66ca-a557-4f0e-a7ea-c0700f696f7b" class="bulleted-list"><li>target is the actual element that triggered it</li></ul><p id="3b4c7353-202e-4fa8-8e8b-2948c3d3fc03" class="">
+    </p><p id="84aa97e3-b850-4d51-a758-ba8f00b71a87" class=""><strong>What is Event Delegation</strong></p><ul id="395b29fa-5135-4bae-a629-4de2dac1d4d2" class="bulleted-list"><li>Adding event listeners to DOM elements will fire not only on a single DOM element but on all of its children<p id="63fe3222-76e4-484c-9a0f-df23b10d50fe" class=""><strong>Why does this happen?</strong></p><ul id="9c2a9ca5-9236-4cc1-a59d-538ff390514c" class="bulleted-list"><li>Event Bubbling: bubbles up from the child elements to the parent when an event listener is fired. </li></ul><p id="a70814da-77b0-43f3-acf3-f10612112968" class="">
+    </p></li></ul><p id="c27bfec2-b43c-4ee0-8d78-5c96e9edae2e" class="">Function Declaration vs Expression</p><pre id="cceae30c-1c48-4dd5-a5b6-57a9c996db07" class="code"><code>function foo() {
+        //Definition or statement
+        //Function declaration
+    }
+    
+    var foo = function() {
+        //Function expression
+    
+    }
+    
+    
+    // The following IIFE will not run
+    function() {
+    
+    }(); // JS does not know what the brackets are
+    
+    //All we need to do ias to add brackets
+    (function foo() {})(); // Now this is an expression so it can be run immediately</code></pre><p id="b3b7d120-1333-4588-a52f-2a438a7fd196" class="">When do I use IIFE?<div class="indented"><ul id="28d0aa6f-a5bc-41b9-952a-24a575d90e5f" class="bulleted-list"><li>Control variable scope<ul id="bef43d85-7faf-43cd-9bd7-5330e45dd65a" class="bulleted-list"><li>So that you will never have collision inside your variable scope</li></ul></li></ul><ul id="095e6de0-b1de-4c90-92c4-ba3431292524" class="bulleted-list"><li>The variable inside the scope could not be referenced</li></ul><pre id="e3e98c1e-c507-42aa-9e14-7ddab6b7c756" class="code"><code>(function foo() {})()</code></pre><p id="80844422-d344-4af1-b1b7-0901ebc32849" class="">
+    </p></div></p><p id="d5162ef0-ed14-4468-bded-5eae0bf0dcf1" class="">Method</p><ul id="38bbf3c4-c636-4064-9e6e-a503856346d6" class="bulleted-list"><li>A function that is a property of an object is called a method</li></ul><ul id="0b46dfa5-5164-4d3a-8614-9f61f3fdd9e3" class="bulleted-list"><li></li></ul><pre id="81ca82a1-63a2-4281-b4db-98ae6c84abdf" class="code"><code>let obj = {
+        1: &quot;gdgdf&quot;
+    }
+    
+    obj.sayHi = function() {
+        alert(&quot;hello&quot;);
+    }
+    
+    obj.sayHi() // Print out objects
+    
+    let obj = {
+        1: &quot;hello&quot;,
+        sayHi: function() {
+            alert(&quot;gfdg&quot;);
+        }
+    }</code></pre><p id="046a0d7d-789d-4ba1-9ef6-39c26ecf713e" class="">
+    </p></div></article></body></html>
