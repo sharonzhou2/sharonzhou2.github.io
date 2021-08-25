@@ -6,37 +6,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sharon Zhou's About Me!</title>
     <link href="style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Scrollmagic.io -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <script src="index.js" defer></script>
 </head>
 <body>
-    <nav>
-        <ul>
-            <a href="about.html"><li>About</li></a>
-            <a><li>Contact</li></a>
-            <a href="projects.html"><li>Projects</li></a>
-            <a href="notes.html"><li>Notes</li></a>
-            <a href="index.html"><span id="myLogo">sharonzhou2</span></a>
-        
-        </ul>
-    </nav>
 
-        <div class="info">
-            <span id="title">Hello! I am Sharon</span>
-            <div class="bio">I am Computer Science student that loves creating and designing new projects</div>
-            <div class="bio smaller">I am a student based in Sydney, and I like capturing my journey through this platform</div>
+        <div class="main">
+            <nav>
+                <ul>
+                    <a href="index.html"><li>Sharon Zhou</li></a>
+                    <!-- <a href="about.html"><li>About Me!</li></a> -->
+                </ul>
+            </nav>
+            <video autoplay loop muted playsinline src="background2.mp4"></video>
 
+            <div class="info">
+                <span id="title">Hello! I am Sharon</span>
+                <div class="bio">I am Computer Science student that loves creating projects with sustainble methodologies</div>
+                <!-- <div class="bio smaller">I am a student based in Sydney, and I like capturing my journey through this platform</div> -->
+    
+            </div>
         </div>
+
+        <div class="projects">
+            <div class="container">
+                <div id="proj1" class="project">
+                    <a href="https://sharonzhou2.github.io/Calculator/"><div>
+                        <p class="skills-text">Skills: HTML, CSS, JS</p>
+                        Calculator
+                        <!-- <div class="numbers">1</div> -->
+                        <img class="project-images" src="icons/calculator.png">
+                        <div class="proj-text">This is a simple calculator project 
+                            done as a to learn the basics of JavaScript
+                        </div>
+                    </div></a>
+                </div>
+                <div id="proj2" class="project">
+                    <a href="https://sharonzhou2.github.io/Etch-A-Sketch/"><div>
+                        <p class="skills-text">Skills: HTML, CSS, JS</p>
+                        Etch a Sketch
+                        <img class="project-images" src="icons/sketch.png">
+                        <div class="proj-text">This is a simple sketching project that
+                            is used to emulate a drawing pad
+                        </div>
+                        
+                    </div></a>
+                </div>
+
+                <div id="proj3" class="project">
+                    <a href="https://sharonzhou2.github.io/library/"><div>
+                        <p class="skills-text">Skills: HTML, CSS, JS</p>
+                        Library
+                        <img class="project-images" src="icons/library.png">
+                        <div class="proj-text">This is a web application to save 
+                            and bookmarks the progress of your books!
+                        </div>
+                    </div></a>
+                </div>
+
+                <div id="proj4" class="project">
+                    <a href="https://sharonzhou2.github.io/tic-tac-toe/"><div>
+                        <p class="skills-text">Skills: HTML, CSS, JS</p>
+                        Tic Tac Toe
+                        <img class="project-images" src="icons/tictactoe.png">
+                        <div class="proj-text">This is a simple tic tac toe game
+                        </div>
+                    </div></a>
+                </div>
+
+                <div id="proj5" class="project">
+                    <a href="https://youtube-syncer-aus.herokuapp.com/"><div>
+                        <p class="skills-text">Skills: HTML, CSS, JS, Youtube API, WebSockets</p>
+                        
+                        YouTube Syncer
+                        <img class="project-images" src="icons/youtube.png">
+                        <div class="proj-text">This is an application that allows you to 
+                            sync youtube videos with your friends!
+                        </div>
+                    </div></a>
+                 
+                </div>
+        
+            </div>
+        </div>
+
         
     
-    
-        <div class="githubLink">
-            <a href="https://github.com/sharonzhou2"><img src="GitHub-Mark-32px.png"></a>
+        <div class="footer">
+            <div class="about-text">
+                <div class="greeting">
+                    Hello! 
+                </div>
+                <p>I am currently looking for opportunities to work! 
+                    If you're interested, please let me know!
+                    
+                </p>
+                <br>
+                <p>sz19991242p@gmail.com</p>
+                
+            </div>
+            <div class="githubLink">
+                <a href="https://github.com/sharonzhou2"><img src="GitHub-Mark-32px.png"></a>
+                
+                <span id="name">@sharonzhou2</span>
+                    <p id="made">
+                        Made by Sharon Zhou
+                    </p>
             
-        <span id="name">@sharonzhou2</span>
-            <p id="made">
-                Made by Sharon Zhou
-            </p>
-        
+            </div>
         </div>
+     
+
   
     
 </body>
