@@ -24,3 +24,13 @@ $('.project').each(function() {
     scene.setClassToggle(this, 'fade-in');
     scene.addTo(controller);
 })
+
+let video = document.getElementById("vid-background");
+
+// Check for dimensions to be resized
+$(window).resize(function() {
+    //resize just happened, pixels changed
+    video.style.width = window.innerWidth + "px";
+    video.style.height = window.innerHeight + "px";
+    video.style.objectFit = "cover";
+});
